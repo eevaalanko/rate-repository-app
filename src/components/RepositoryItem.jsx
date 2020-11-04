@@ -1,10 +1,13 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import React from "react";
+import Text from './Text';
+import theme from "../theme";
 
 const styles = StyleSheet.create({
   topContainer: {
     flexDirection: "row",
     marginBottom: 15,
+    paddingLeft: 6
   },
   avatarContainer: {
     flexGrow: 0,
@@ -34,19 +37,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   avatar: {
-    width: 80,
-    height: 80,
+    width: 40,
+    height: 40,
     borderRadius: 4,
   },
   nameText: {
     marginBottom: 2,
-    fontWeight: "bold",
-    fontSize: 20,
+    fontSize: theme.fontSizes.title,
+    fontWeight: theme.fontWeights.bold,
   },
   languageContainer: {
     marginTop: 10,
     flexDirection: "row",
-    marginBottom: 4,
+    marginBottom: 8,
   },
   languageText: {
     color: "white",
@@ -78,8 +81,8 @@ const RepositoryItem = ({ item }) => (
       />
     </View>
     <View style={styles.contentContainer}>
-      <Text style={styles.nameText}>{item.fullName}</Text>
-      <Text>{item.description}</Text>
+      <Text style={styles.nameText} fontSize="subheading">{item.fullName}</Text>
+      <Text color="textSecondary">{item.description}</Text>
       <View style={styles.languageContainer}>
         <Text style={styles.languageText}>{item.language}</Text>
       </View>
