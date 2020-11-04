@@ -1,11 +1,11 @@
 import React from "react";
-import Constants from "expo-constants";
 import { StyleSheet, View } from "react-native";
 import { Route, Switch, Redirect } from "react-router-native";
 import RepositoryList from "./RepositoryList";
 import AppBar from "./AppBar";
 import theme from "../theme";
 import SignIn from "./SignIn";
+import {SignInForm} from "./SignInForm";
 
 const styles = StyleSheet.create({
   container: {
@@ -21,7 +21,7 @@ const Main = () => {
       <AppBar />
       <Switch>
         <Route path="/signIn">
-          <SignIn />
+          <SignInForm />
         </Route>
         <Route path="/" exact>
           <RepositoryList />

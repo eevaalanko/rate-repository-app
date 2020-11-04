@@ -50,8 +50,10 @@ const AppBarTab = ({ children, ...props }) => {
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Repositories</Text>
       <ScrollView style={styles.scrollView} horizontal>
+        <Link to="/" component={AppBarTab}>
+          Repositories
+        </Link>
         <Link to="/signIn" component={AppBarTab}>
           Sign in
         </Link>

@@ -16,6 +16,11 @@ const theme = {
         normal: '400',
         bold: '700',
     },
+    topContainer: {
+        flexDirection: "row",
+        marginBottom: 15,
+        paddingLeft: 6
+    },
 };
 
 export default theme;
