@@ -1,25 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import Constants from "expo-constants";
 
 const useRepositories = () => {
-    const [repositories, setRepositories] = useState();
-    const [loading, setLoading] = useState(false);
+  const [repositories, setRepositories] = useState();
+  const [loading, setLoading] = useState(false);
 
-    const fetchRepositories = async () => {
-        setLoading(true);
+  console.log("apollo uri: ", Constants.manifest.extra.apolloUri);
 
-        // Replace the IP address part with your own IP address!
-        const response = await fetch('http://192.168.1.107:5000/api/repositories');
-        const json = await response.json();
+  const fetchRepositories = async () => {
+    setLoading(true);
 
-        setLoading(false);
-        setRepositories(json);
-    };
+    // Replace the IP address part with your own IP address!
+    const response = await fetch(
+      Constants.manifest.extra.apolloUri + "/api/repositories"
+    );
+    const json = await response.json();
 
-    useEffect(() => {
-        fetchRepositories();
-    }, []);
+    setLoading(false);
+    setRepositories(json);
+  };
 
-    return { repositories, loading, refetch: fetchRepositories };
+  useEffect(() => {
+    fetchRepositories();
+  }, []);
+
+  return { repositories, loading, refetch: fetchRepositories };
 };
 
 export default useRepositories;
