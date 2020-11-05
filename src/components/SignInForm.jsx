@@ -42,19 +42,11 @@ const initialValues = {
   password: "",
 };
 
-export const SignInForm = () => {
-  const [signIn] = useSignIn();
-  let history = useHistory()
-  const onSubmit = async (values) => {
-    const { username, password } = values;
-    try {
-      const data = await signIn({ username, password });
-      history.push("/")
-      console.log("auth data ", data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+export const SignInFormContainer = ({
+  initialValues,
+  onSubmit,
+  validationSchema,
+}) => {
   return (
     <View style={theme.topContainer}>
       <Formik
@@ -69,6 +61,7 @@ export const SignInForm = () => {
                 style={styles.input}
                 name="username"
                 placeholder="Username"
+                testID="username"
               />
             </View>
             <View>
@@ -77,10 +70,11 @@ export const SignInForm = () => {
                 name="password"
                 placeholder="Password"
                 secureTextEntry={true}
+                testID="password"
               />
             </View>
             <View style={styles.button}>
-              <TouchableWithoutFeedback onPress={handleSubmit}>
+              <TouchableWithoutFeedback onPress={handleSubmit} testID="submitButton">
                 <Text style={styles.buttonText}>Sign in</Text>
               </TouchableWithoutFeedback>
             </View>
@@ -88,5 +82,27 @@ export const SignInForm = () => {
         )}
       </Formik>
     </View>
+  );
+};
+
+export const SignInForm = () => {
+  const [signIn] = useSignIn();
+  let history = useHistory();
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+    try {
+      const data = await signIn({ username, password });
+      history.push("/");
+      console.log("auth data ", data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  return (
+    <SignInFormContainer
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+    />
   );
 };
