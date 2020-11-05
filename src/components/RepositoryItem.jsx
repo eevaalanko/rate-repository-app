@@ -81,10 +81,10 @@ const RepositoryItem = ({ item }) => (
       />
     </View>
     <View style={styles.contentContainer}>
-      <Text style={styles.nameText} fontSize="subheading">{item.fullName}</Text>
-      <Text color="textSecondary">{item.description}</Text>
+      <Text testID="fullName" style={styles.nameText} fontSize="subheading">{item.fullName}</Text>
+      <Text testID="description" color="textSecondary">{item.description}</Text>
       <View style={styles.languageContainer}>
-        <Text style={styles.languageText}>{item.language}</Text>
+        <Text testID="language" style={styles.languageText}>{item.language}</Text>
       </View>
       <View style={styles.countContainer}>
         <CountItem count={item.stargazersCount} label="Stars" isFirst />
