@@ -1,10 +1,12 @@
-import React from "react";
+import React,  { useContext }  from "react";
 import { View, StyleSheet, TouchableWithoutFeedback, ScrollView } from "react-native";
 import Constants from "expo-constants";
 import { Link } from "react-router-native";
-
 import theme from "../theme";
 import Text from "./Text";
+import useAuthorizedUser from "../hooks/useAuthoriserUser";
+import AuthStorageContext from "../contexts/AuthStorageContext";
+import {useApolloClient} from "@apollo/react-hooks";
 
 const styles = StyleSheet.create({
   container: {
@@ -48,15 +50,30 @@ const AppBarTab = ({ children, ...props }) => {
 };
 
 const AppBar = () => {
+  const user = useAuthorizedUser()
+  const authStorage = useContext(AuthStorageContext);
+  const apolloClient = useApolloClient();
+  console.log('user: ', user)
+  const signOut = async () => {
+    await authStorage.removeAccessToken();
+    // with incorrect apolloClient as above, re-renders do not occur
+    await apolloClient.resetStore();
+  };
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} horizontal>
         <Link to="/" component={AppBarTab}>
           Repositories
         </Link>
-        <Link to="/signIn" component={AppBarTab}>
-          Sign in
-        </Link>
+        {user ? (
+            <Link to="/" component={AppBarTab} onPress={() => signOut()}>
+              Sign out
+            </Link>
+        ) : (
+            <Link to="/signIn" component={AppBarTab}>
+              Sign in
+            </Link>
+        )}
       </ScrollView>
     </View>
   );

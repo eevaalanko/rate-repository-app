@@ -1,5 +1,4 @@
 import { SIGN_IN } from "../graphql/mutations";
-import AsyncStorage from '@react-native-community/async-storage';
 import {useMutation, useApolloClient} from "@apollo/react-hooks";
 import { useContext } from 'react';
 import AuthStorageContext from '../contexts/AuthStorageContext';
