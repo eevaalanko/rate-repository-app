@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Route, Switch, Redirect } from "react-router-native";
+import { Route, Switch, Redirect} from "react-router-native";
 import RepositoryList from "./RepositoryList";
 import AppBar from "./AppBar";
 import theme from "../theme";
 import { SignInForm } from "./SignInForm";
+import {SingleRepositoryItem} from "./RepositoryItem";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +25,9 @@ const Main = () => {
         </Route>
         <Route path="/" exact>
           <RepositoryList />
+        </Route>
+        <Route path="/:id" exact>
+          <SingleRepositoryItem  />
         </Route>
         <Redirect to="/" />
       </Switch>
