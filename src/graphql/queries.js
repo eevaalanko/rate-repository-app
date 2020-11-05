@@ -13,6 +13,7 @@ export const GET_REPOSITORIES = gql`
           reviewCount
           ownerAvatarUrl
           openIssuesCount
+          language
         }
       }
     }
