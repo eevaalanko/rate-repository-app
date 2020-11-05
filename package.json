@@ -9,8 +9,11 @@
     "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.5",
     "@apollo/react-hooks": "^4.0.0",
+    "@react-native-community/async-storage": "~1.11.0",
     "apollo-boost": "^0.4.9",
+    "apollo-client": "^2.6.10",
     "dotenv": "^8.2.0",
     "expo": "~38.0.8",
     "expo-constants": "^9.2.0",
